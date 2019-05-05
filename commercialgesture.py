@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime, timedelta
 import smtplib
 from enum import Enum
 
@@ -98,22 +98,13 @@ class Menu:
         type: int
         """
 
-        print("Date of expiration service: ")
-        yearOld = int(input("Year "))
-        monthOld = int(input("Month "))
-        dayOld = int(input("Day "))
+        dateExpiration = input("Date of expiration service. The correct format is YYYY-MM-DD: ")
+        dateDeleted = input("Date of deleted service. The correct format is YYYY-MM-DD: ")
 
-        dateExpiration = date(yearOld, monthOld, dayOld)
+        date1 = datetime.strptime(dateExpiration, '%Y-%m-%d')
+        date2 = datetime.strptime(dateDeleted, '%Y-%m-%d')
 
-        print("Date of deleted service: ")
-
-        yearNew = int(input("Year "))
-        monthNew = int(input("Month "))
-        dayNew = int(input("Day "))
-
-        dateElimination = date(yearNew, monthNew, dayNew)
-
-        result = (dateElimination - dateExpiration).days
+        result = (date2 - date1).days
 
         return print(result, " days of difference.")
 
